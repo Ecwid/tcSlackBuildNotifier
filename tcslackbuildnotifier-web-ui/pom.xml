@@ -79,8 +79,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>17</source>
+					<target>17</target>
 				</configuration>
 			</plugin>
 		    <plugin>
@@ -108,31 +108,31 @@
 		          <execution>
 		            <phase>package</phase>
 		            <configuration>
-		              <tasks>
-						<echo message="Attempting to build dist zip file" />
-						<mkdir dir="${project.build.directory}/dist" />
-						<mkdir dir="${project.build.directory}/dist/server" />
-						
-						<echo message=" - Copying resources to dist" />
-						<copy todir="${project.build.directory}/dist/">
-							<fileset dir="${project.build.directory}/classes/">
-								<include name="teamcity-plugin.xml"/>
-							</fileset>
-						</copy> 
-		
-						<echo message=" - Copying dep jar to dist/server" />
-						<copy todir="${project.build.directory}/dist/server/">
-							  <fileset dir="${project.build.directory}/">
-		    						<include name="*-jar-with-dependencies.jar" />
-		    				  </fileset>
-		    			</copy>
-		    			
-		    			<echo message=" - Creating ZIP file" />
-		    			<zip destfile="${project.build.directory}/tcSlackNotificationsPlugin.zip"
-		    				 basedir="${project.build.directory}/dist"
-		    			 />
-		
-		               </tasks>
+		              <target>
+					<echo message="Attempting to build dist zip file" />
+					<mkdir dir="${project.build.directory}/dist" />
+					<mkdir dir="${project.build.directory}/dist/server" />
+					
+					<echo message=" - Copying resources to dist" />
+					<copy todir="${project.build.directory}/dist/">
+						<fileset dir="${project.build.directory}/classes/">
+							<include name="teamcity-plugin.xml"/>
+						</fileset>
+					</copy> 
+	
+					<echo message=" - Copying dep jar to dist/server" />
+					<copy todir="${project.build.directory}/dist/server/">
+						  <fileset dir="${project.build.directory}/">
+    						<include name="*-jar-with-dependencies.jar" />
+    				  </fileset>
+    			</copy>
+    			
+    			<echo message=" - Creating ZIP file" />
+    			<zip destfile="${project.build.directory}/tcSlackNotificationsPlugin.zip"
+    				 basedir="${project.build.directory}/dist"
+    			 />
+	
+		               </target>
 		            </configuration>
 		            <goals>
 		              <goal>run</goal>
